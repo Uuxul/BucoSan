@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val editEmail = findViewById<EditText>(R.id.editEmail)
         val editPassword = findViewById<EditText>(R.id.editPassword)
-        val button = findViewById<Button>(R.id.button)
+        val button = findViewById<Button>(R.id.buttonLogin)
 
         button.setOnClickListener {
             val email = editEmail.text.toString().trim()
