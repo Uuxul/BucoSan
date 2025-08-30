@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@color/grey"
     tools:context=".RegistrarCuenta">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-356dp">
+        android:background="@android:color/white"
+        android:padding="20dp"
+        android:backgroundTint="@color/grey">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,73 +28,139 @@
                 android:id="@+id/tituloRegistro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-black"
                 android:text="Crear Cuenta"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
 
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="83dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/new_user" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre completo"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
 
             <EditText
                 android:id="@+id/nombreRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Nombre completo"
-                android:padding="12dp" />
+                android:layout_height="41dp"
+                android:background="@drawable/rounded_bg"
+                android:hint="Ej: Juan Pérez"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Correo electrónico"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
 
             <EditText
                 android:id="@+id/emailRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Correo electrónico"
+                android:layout_height="41dp"
+                android:background="@drawable/rounded_bg"
+                android:hint="Ej: usuario@gmail.com"
                 android:inputType="textEmailAddress"
-                android:padding="12dp" />
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teléfono"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
+
             <EditText
                 android:id="@+id/Telefono"
                 android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:background="@drawable/rounded_bg"
+                android:hint="Ej: 999 123 4567"
+                android:inputType="phone"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Telefono"
-                android:inputType="textPassword"
-                android:padding="12dp" />
+                android:text="Contraseña"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
 
             <EditText
                 android:id="@+id/passwordRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@android:drawable/edit_text"
+                android:layout_height="41dp"
+                android:background="@drawable/rounded_bg"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:padding="12dp" />
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirmar contraseña"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
 
             <EditText
                 android:id="@+id/confPasswordRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Confirmar contraseña"
+                android:layout_height="41dp"
+                android:background="@drawable/rounded_bg"
+                android:hint="Repite la contraseña"
                 android:inputType="textPassword"
-                android:padding="12dp" />
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="24dp" />
 
 
             <Button
                 android:id="@+id/btnRegistro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_red_dark"
-                android:padding="14dp"
+                android:layout_width="143dp"
+                android:layout_height="55dp"
+                android:backgroundTint="#C0E6FD"
+                android:padding="12dp"
                 android:text="Crear cuenta"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
