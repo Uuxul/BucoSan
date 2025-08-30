@@ -55,7 +55,15 @@
                 android:hint="Correo electrónico"
                 android:inputType="textEmailAddress"
                 android:padding="12dp" />
-
+            <EditText
+                android:id="@+id/Telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@android:drawable/edit_text"
+                android:hint="Telefono"
+                android:inputType="textPassword"
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/passwordRegistro"
@@ -66,7 +74,6 @@
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:padding="12dp" />
-
 
             <EditText
                 android:id="@+id/confPasswordRegistro"
