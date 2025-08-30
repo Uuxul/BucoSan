@@ -50,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_bg"
         android:backgroundTint="#1E90FF"
@@ -58,6 +58,7 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editPassword" />
 
@@ -65,15 +66,31 @@
         android:id="@+id/textOlvidar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Olvide?"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="14sp"
+        android:layout_marginTop="60dp"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
+
+    <TextView
+        android:id="@+id/txtRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Crear Cuenta"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/A2"

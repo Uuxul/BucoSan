@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val txtRegistrar = findViewById<TextView>(R.id.txtRegistrar)
+
+        txtRegistrar.setOnClickListener {
+            val intent = Intent(this, RegistrarCuenta::class.java) // aquí va la Activity de registro
+            startActivity(intent)
+        }
+
+        val textOlvidar = findViewById<TextView>(R.id.textOlvidar)
+
+        textOlvidar.setOnClickListener {
+            val intent = Intent(this, RecuperacionCuenta::class.java) // aquí va la Activity de registro
+            startActivity(intent)
+        }
+
 
         val editEmail = findViewById<EditText>(R.id.editEmail)
         val editPassword = findViewById<EditText>(R.id.editPassword)
@@ -40,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     showDialog("El campo contraseña está vacío")
                 }
                 else -> {
-                    // Ambos llenos → pasar a segunda pantalla
+                    // PASAMOS A PANTALLA CUANDO ESTA LLENO LOS DOS CAMPOS
                     val intent = Intent(this, SegundaP::class.java)
                     startActivity(intent)
                 }
@@ -50,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showDialog(message: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Bienvenido")
+        builder.setTitle("APP MOVILE")
         builder.setMessage(message)
         builder.setPositiveButton("✖") { dialog, _ ->
             dialog.dismiss()
