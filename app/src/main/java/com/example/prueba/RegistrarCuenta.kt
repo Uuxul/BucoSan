@@ -1,5 +1,6 @@
 package com.example.prueba
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -47,7 +48,10 @@ class RegistrarCuenta : AppCompatActivity() {
                 }
                 else -> {
 
-                    mostrarDialogo("✅ Usuario agregado", "El usuario ha sido registrado correctamente.")
+                    
+                    val intent = Intent(this, ActivarCuenta::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
