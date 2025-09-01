@@ -12,6 +12,11 @@ import androidx.core.view.WindowInsetsCompat
 
 class RegistrarCuenta : AppCompatActivity() {
 
+    companion object {
+        // Variable global donde se guardará el nombre
+        var nombreUsuarioGlobal: String? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -47,8 +52,9 @@ class RegistrarCuenta : AppCompatActivity() {
                     mostrarDialogo("⚠️ Contraseñas", "Las contraseñas no coinciden.")
                 }
                 else -> {
+                    // ✅ Guardar el nombre en la variable global
+                    nombreUsuarioGlobal = nombreText
 
-                    
                     val intent = Intent(this, ActivarCuenta::class.java)
                     startActivity(intent)
                     finish()
@@ -59,7 +65,6 @@ class RegistrarCuenta : AppCompatActivity() {
 
     private fun mostrarDialogo(titulo: String, mensaje: String) {
         val builder = AlertDialog.Builder(this)
-
 
         val fullMessage = "$titulo\n\n$mensaje"
         val spannable = android.text.SpannableString(fullMessage)
