@@ -26,6 +26,6 @@ class SegundaP : AppCompatActivity() {
 
         // ✅ Mostrarlo en un TextView (debes tenerlo en tu XML con id textViewNombre)
         val textView = findViewById<TextView>(R.id.nombre)
-        textView.text = "BIENVENIDO, $nombreUsuario 👋"
+        textView.text = "!Bienvenido¡, $nombreUsuario 👋"
     }
 }
