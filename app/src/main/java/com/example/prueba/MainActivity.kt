@@ -53,13 +53,54 @@ class MainActivity : AppCompatActivity() {
                     showDialog("🔒 Contraseña faltante", "Debes ingresar tu contraseña para iniciar sesión.")
                 }
                 else -> {
-
-                    val intent = Intent(this, SegundaP::class.java)
-                    startActivity(intent)
+                    loginUsuario(email, password)
                 }
             }
         }
+
     }
+
+    private fun loginUsuario(correo: String, password: String) {
+        val url = Config.BASE_URL + "login.php"
+
+        val queue = com.android.volley.toolbox.Volley.newRequestQueue(this)
+
+        val stringRequest = object : com.android.volley.toolbox.StringRequest(
+            com.android.volley.Request.Method.POST, url,
+            com.android.volley.Response.Listener { response ->
+                if (response.contains("✅ Login exitoso")) {
+                    // Extraemos los nombres
+                    val parts = response.split("|")
+                    val nombre = if (parts.size > 1) parts[1] else ""
+                    val idUser = if (parts.size > 2) parts[2] else ""
+
+                    // Guardar nombre global ( aportacion de chema xd)
+                    RegistrarCuenta.nombreUsuarioGlobal = nombre
+
+                    val intent = Intent(this, SegundaP::class.java)
+                    intent.putExtra("idUsuario", idUser)
+                    intent.putExtra("nombreUsuario", nombre)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    showDialog("⚠️ Error de login", response)
+                }
+            },
+            com.android.volley.Response.ErrorListener { error ->
+                showDialog("⚠️ Conexión", "Error: ${error.message}")
+            }
+        ) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["correo"] = correo
+                params["password"] = password
+                return params
+            }
+        }
+
+        queue.add(stringRequest)
+    }
+
 
     private fun showDialog(title: String, message: String) {
         val builder = AlertDialog.Builder(this)
