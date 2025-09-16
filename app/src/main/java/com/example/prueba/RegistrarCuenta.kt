@@ -9,6 +9,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.android.volley.Request
+import com.android.volley.Response
 
 class RegistrarCuenta : AppCompatActivity() {
 
@@ -21,6 +25,7 @@ class RegistrarCuenta : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registrar_cuenta)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -44,23 +49,53 @@ class RegistrarCuenta : AppCompatActivity() {
             when {
                 nombreText.isEmpty() || emailText.isEmpty() || telefonoText.isEmpty()
                         || passwordText.isEmpty() || confPasswordText.isEmpty() -> {
-
                     mostrarDialogo("⚠️ Campos vacíos", "Por favor, completa todos los campos.")
                 }
                 passwordText != confPasswordText -> {
-
                     mostrarDialogo("⚠️ Contraseñas", "Las contraseñas no coinciden.")
                 }
                 else -> {
-                    // ✅ Guardar el nombre en la variable global
-                    nombreUsuarioGlobal = nombreText
-
-                    val intent = Intent(this, ActivarCuenta::class.java)
-                    startActivity(intent)
-                    finish()
+                    registrarUsuario(nombreText, emailText, telefonoText, passwordText)
                 }
             }
         }
+    }
+
+    private fun registrarUsuario(nombre: String, email: String, telefono: String, password: String) {
+        // Config se llama donde esta almacenado la ip de mi laptop donde recibe info
+        //y el url de la carpeta + registrar.php es paraa la conexxion
+        val url = Config.BASE_URL + "registrar.php"
+
+
+        val queue = Volley.newRequestQueue(this)
+
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            Response.Listener { response ->
+                if (response.contains("✅ Registro exitoso")) {
+
+                    val intent = Intent(this, codigoverificacion::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    mostrarDialogo("⚠️ Error", response)
+                }
+            },
+            Response.ErrorListener { error ->
+                mostrarDialogo("⚠️ Conexión", "Error: ${error.message}")
+            }
+        ) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["nombre"] = nombre
+                params["correo"] = email      // <- clave corregida para tu tabla
+                params["telefono"] = telefono
+                params["password"] = password
+                return params
+            }
+        }
+
+        queue.add(stringRequest)
     }
 
     private fun mostrarDialogo(titulo: String, mensaje: String) {
@@ -76,14 +111,11 @@ class RegistrarCuenta : AppCompatActivity() {
         )
 
         builder.setMessage(spannable)
-        builder.setPositiveButton("ACEPTAR") { dialog, _ ->
-            dialog.dismiss()
-        }
+        builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss() }
 
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
         dialog.show()
-
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(0xFFFF0000.toInt())
     }
 }
