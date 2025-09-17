@@ -17,6 +17,7 @@ import com.android.volley.Response
 class RegistrarCuenta : AppCompatActivity() {
 
     companion object {
+        var correoUsuarioGlobal: String? = null
         // Variable global donde se guardará el nombre
         var nombreUsuarioGlobal: String? = null
     }
@@ -55,6 +56,8 @@ class RegistrarCuenta : AppCompatActivity() {
                     mostrarDialogo("⚠️ Contraseñas", "Las contraseñas no coinciden.")
                 }
                 else -> {
+                    correoUsuarioGlobal = emailText
+                    nombreUsuarioGlobal = nombreText
                     registrarUsuario(nombreText, emailText, telefonoText, passwordText)
                 }
             }
@@ -62,7 +65,7 @@ class RegistrarCuenta : AppCompatActivity() {
     }
 
     private fun registrarUsuario(nombre: String, email: String, telefono: String, password: String) {
-        // Cambia esta IP por la de tu PC si es celular físico
+
         val url = Config.BASE_URL + "registrar.php"
 
 
