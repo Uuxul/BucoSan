@@ -62,8 +62,7 @@ class RegistrarCuenta : AppCompatActivity() {
     }
 
     private fun registrarUsuario(nombre: String, email: String, telefono: String, password: String) {
-        // Config se llama donde esta almacenado la ip de mi laptop donde recibe info
-        //y el url de la carpeta + registrar.php es paraa la conexxion
+        // Cambia esta IP por la de tu PC si es celular físico
         val url = Config.BASE_URL + "registrar.php"
 
 
