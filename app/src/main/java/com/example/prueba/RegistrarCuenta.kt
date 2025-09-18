@@ -85,6 +85,7 @@ class RegistrarCuenta : AppCompatActivity() {
             },
             Response.ErrorListener { error ->
                 mostrarDialogo("⚠️ Conexión", "Error: ${error.message}")
+                val intent = Intent(this,MainActivity::class.java)
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
