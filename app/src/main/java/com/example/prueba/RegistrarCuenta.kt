@@ -21,6 +21,8 @@ class RegistrarCuenta : AppCompatActivity() {
         var correoUsuarioGlobal: String? = null
         // Variable global donde se guardará el nombre
         var nombreUsuarioGlobal: String? = null
+
+        var telefonoUsuarioGlobal: String? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +64,7 @@ class RegistrarCuenta : AppCompatActivity() {
                 else -> {
                     correoUsuarioGlobal = emailText
                     nombreUsuarioGlobal = nombreText
+                    telefonoUsuarioGlobal = telefonoText
                     registrarUsuario(nombreText, emailText, telefonoText, passwordText)
                 }
 

@@ -1,5 +1,6 @@
 package com.example.prueba
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
@@ -28,7 +29,7 @@ class SegundaP : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
 
-        // Configurar toggle del Drawer
+
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.navigation_drawer_open,
@@ -37,23 +38,31 @@ class SegundaP : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // 🔹 Aquí obtenemos la vista del header
+
         val headerView = navView.getHeaderView(0)
         val tvHeaderName = headerView.findViewById<TextView>(R.id.headerName)
         val tvHeaderEmail = headerView.findViewById<TextView>(R.id.headerEmail)
 
-        // 🔹 Y aquí asignamos el nombre y correo de la variable global
+
         tvHeaderName.text = RegistrarCuenta.nombreUsuarioGlobal ?: "Usuario"
         tvHeaderEmail.text = RegistrarCuenta.correoUsuarioGlobal ?: "usuario@email.com"
 
-        // Listener de items del Navigation Drawer
+        // es  lo que hay en nuestro menu
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_perfil -> { /* Abrir PerfilActivity */ }
-                R.id.nav_info -> {
-                    showDialog("Información", "AppUx versión prueba")
+                R.id.nav_perfil -> {
+                    val intent = Intent(this, perfil::class.java)
+                    startActivity(intent)
+
                 }
-                R.id.nav_salir -> finish()
+                R.id.nav_info -> {
+                    showDialog("Información", "AppUx versión prueba.")
+                }
+                R.id.nav_salir -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
             drawerLayout.closeDrawers()
             true
@@ -67,5 +76,21 @@ class SegundaP : AppCompatActivity() {
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
+    //para que cuando le demos atras ya no salga solo asi
+    override fun onBackPressed() { //no causa error eso rojo no se porque salio xd
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Salir")
+        builder.setMessage("¿Deseas salir de la aplicación?")
+        builder.setPositiveButton("Sí") { dialog, _ ->
+            dialog.dismiss()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)// nos manla al login
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss() // pues no lo cierra xd
+        }
+        builder.show()
+    }
+
 
 }
