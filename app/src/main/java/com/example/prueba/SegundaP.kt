@@ -1,31 +1,71 @@
 package com.example.prueba
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import com.example.prueba.R
+import com.google.android.material.navigation.NavigationView
+
 
 class SegundaP : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_segunda_p)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+
+        // Configurar toggle del Drawer
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        // 🔹 Aquí obtenemos la vista del header
+        val headerView = navView.getHeaderView(0)
+        val tvHeaderName = headerView.findViewById<TextView>(R.id.headerName)
+        val tvHeaderEmail = headerView.findViewById<TextView>(R.id.headerEmail)
+
+        // 🔹 Y aquí asignamos el nombre y correo de la variable global
+        tvHeaderName.text = RegistrarCuenta.nombreUsuarioGlobal ?: "Usuario"
+        tvHeaderEmail.text = RegistrarCuenta.correoUsuarioGlobal ?: "usuario@email.com"
+
+        // Listener de items del Navigation Drawer
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_perfil -> { /* Abrir PerfilActivity */ }
+                R.id.nav_info -> {
+                    showDialog("Información", "AppUx versión prueba")
+                }
+                R.id.nav_salir -> finish()
+            }
+            drawerLayout.closeDrawers()
+            true
         }
-
-        // ✅ Recuperar el nombre desde la variable global de RegistrarCuenta
-        val nombreUsuario = RegistrarCuenta.nombreUsuarioGlobal
-
-        // ✅ Mostrarlo en un TextView (debes tenerlo en tu XML con id textViewNombre)
-        val textView = findViewById<TextView>(R.id.nombre)
-        textView.text = "!Bienvenido¡, $nombreUsuario"
     }
+
+    private fun showDialog(title: String, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+        builder.show()
+    }
+
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -55,28 +56,32 @@ class RegistrarCuenta : AppCompatActivity() {
                 passwordText != confPasswordText -> {
                     mostrarDialogo("⚠️ Contraseñas", "Las contraseñas no coinciden.")
                 }
+                telefonoText.length != 10 || !telefonoText.all { it.isDigit() } -> {
+                    mostrarDialogo("⚠️ Teléfono", "El número de teléfono debe contener exactamente 10 dígitos.")
+                }
                 else -> {
                     correoUsuarioGlobal = emailText
                     nombreUsuarioGlobal = nombreText
                     registrarUsuario(nombreText, emailText, telefonoText, passwordText)
                 }
+
             }
         }
     }
 
     private fun registrarUsuario(nombre: String, email: String, telefono: String, password: String) {
-
         val url = Config.BASE_URL + "registrar.php"
-
-
         val queue = Volley.newRequestQueue(this)
 
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener { response ->
                 if (response.contains("✅ Registro exitoso")) {
+                    // Mostrar mensaje de éxito
+                    Toast.makeText(this, "Se ha enviado un enlace de verificación a tu correo electrónico", Toast.LENGTH_LONG).show()
 
-                    val intent = Intent(this, codigoverificacion::class.java)
+                    // Redirigir al login
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
@@ -85,13 +90,12 @@ class RegistrarCuenta : AppCompatActivity() {
             },
             Response.ErrorListener { error ->
                 mostrarDialogo("⚠️ Conexión", "Error: ${error.message}")
-                val intent = Intent(this,MainActivity::class.java)
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
                 params["nombre"] = nombre
-                params["correo"] = email      // <- clave corregida para tu tabla
+                params["correo"] = email
                 params["telefono"] = telefono
                 params["password"] = password
                 return params
