@@ -113,7 +113,8 @@ class MainActivity : AppCompatActivity() {
                 }
             },
             Response.ErrorListener { error ->
-                showDialog("⚠️ Conexión", "Error: ${error.message}")
+                showDialog("⚠️ Error de Usuario", "El correo y la contraseña no se han registrado.")
+
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
