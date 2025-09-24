@@ -14,6 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.android.volley.Request
 import com.android.volley.Response
+import org.json.JSONObject
 
 class RegistrarCuenta : AppCompatActivity() {
 
@@ -79,16 +80,21 @@ class RegistrarCuenta : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener { response ->
-                if (response.contains("✅ Registro exitoso")) {
-                    // Mostrar mensaje de éxito
-                    Toast.makeText(this, "Se ha enviado un enlace de verificación a tu correo electrónico", Toast.LENGTH_LONG).show()
+                try {
+                    val json = JSONObject(response)
+                    val status = json.getString("status")
+                    val msg = json.getString("msg")
 
-                    // Redirigir al login
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    mostrarDialogo("⚠️ Error", response)
+                    if (status == "success") {
+                        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        mostrarDialogo("⚠️ Error", msg)
+                    }
+                } catch (e: Exception) {
+                    mostrarDialogo("Registro Exitoso", "AGREGADO CORRECTAMENTE , REVISA TU CORREO :3: $response")
                 }
             },
             Response.ErrorListener { error ->
@@ -108,6 +114,7 @@ class RegistrarCuenta : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
+
     private fun mostrarDialogo(titulo: String, mensaje: String) {
         val builder = AlertDialog.Builder(this)
 
@@ -121,7 +128,8 @@ class RegistrarCuenta : AppCompatActivity() {
         )
 
         builder.setMessage(spannable)
-        builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss() }
+        builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss()
+            startActivity(Intent(this,MainActivity::class.java))}
 
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
