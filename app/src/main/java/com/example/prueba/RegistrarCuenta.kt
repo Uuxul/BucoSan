@@ -20,6 +20,7 @@ class RegistrarCuenta : AppCompatActivity() {
 
     companion object {
         var correoUsuarioGlobal: String? = null
+
         // Variable global donde se guardará el nombre
         var nombreUsuarioGlobal: String? = null
 
@@ -56,30 +57,46 @@ class RegistrarCuenta : AppCompatActivity() {
                         || passwordText.isEmpty() || confPasswordText.isEmpty() -> {
                     mostrarDialogo("⚠️ Campos vacíos", "Por favor, completa todos los campos.")
                 }
+
                 passwordText != confPasswordText -> {
                     mostrarDialogo("⚠️ Contraseñas", "Las contraseñas no coinciden.")
                 }
+
                 telefonoText.length != 10 || !telefonoText.all { it.isDigit() } -> {
-                    mostrarDialogo("⚠️ Teléfono", "El número de teléfono debe contener exactamente 10 dígitos.")
+                    mostrarDialogo(
+                        "⚠️ Teléfono",
+                        "El número de teléfono debe contener exactamente 10 dígitos."
+                    )
                 }
+
                 else -> {
                     correoUsuarioGlobal = emailText
                     nombreUsuarioGlobal = nombreText
                     telefonoUsuarioGlobal = telefonoText
                     registrarUsuario(nombreText, emailText, telefonoText, passwordText)
                 }
-
             }
         }
+
     }
 
-    private fun registrarUsuario(nombre: String, email: String, telefono: String, password: String) {
+    private fun registrarUsuario(
+        nombre: String,
+        email: String,
+        telefono: String,
+        password: String
+    ) {
         val url = Config.BASE_URL + "registrar.php"
         val queue = Volley.newRequestQueue(this)
+
+        // Bloquear el botón mientras se procesa
+        val btnRegistro = findViewById<Button>(R.id.btnRegistro)
+        btnRegistro.isEnabled = false
 
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener { response ->
+                btnRegistro.isEnabled = true
                 try {
                     val json = JSONObject(response)
                     val status = json.getString("status")
@@ -94,10 +111,11 @@ class RegistrarCuenta : AppCompatActivity() {
                         mostrarDialogo("⚠️ Error", msg)
                     }
                 } catch (e: Exception) {
-                    mostrarDialogo("Registro Exitoso", "AGREGADO CORRECTAMENTE , REVISA TU CORREO :3: $response")
+                    mostrarDialogo("⚠️ Error", "Respuesta inválida del servidor: $response")
                 }
             },
             Response.ErrorListener { error ->
+                btnRegistro.isEnabled = true // reactivar botón
                 mostrarDialogo("⚠️ Conexión", "Error: ${error.message}")
             }
         ) {
@@ -111,8 +129,16 @@ class RegistrarCuenta : AppCompatActivity() {
             }
         }
 
+        // Evitar reintentos automáticos que dupliquen la petición
+        stringRequest.retryPolicy = com.android.volley.DefaultRetryPolicy(
+            0,
+            0,
+            com.android.volley.DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+
         queue.add(stringRequest)
     }
+
 
 
     private fun mostrarDialogo(titulo: String, mensaje: String) {
@@ -128,12 +154,14 @@ class RegistrarCuenta : AppCompatActivity() {
         )
 
         builder.setMessage(spannable)
-        builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss()
-            startActivity(Intent(this,MainActivity::class.java))}
+        builder.setPositiveButton("ACEPTAR") { dialog, _ ->
+            dialog.dismiss()
+        }
 
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
         dialog.show()
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(0xFFFF0000.toInt())
     }
+
 }
