@@ -19,6 +19,7 @@ class SegundaP : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_segunda_p)
@@ -51,6 +52,12 @@ class SegundaP : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_perfil -> {
+                    val intent = Intent(this, perfil::class.java)
+                    startActivity(intent)
+
+                }
+                R.id.nav_carrito ->
+                {
                     val intent = Intent(this, perfil::class.java)
                     startActivity(intent)
 
