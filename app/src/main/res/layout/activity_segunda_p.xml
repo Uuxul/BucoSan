@@ -35,7 +35,8 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            >
 
             <LinearLayout
                 android:id="@+id/containerLibros"
@@ -100,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -129,7 +131,7 @@
                                 android:text="El Principito"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor1"
@@ -155,7 +157,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$199.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -165,7 +167,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Añadir al carrito"
                                 android:backgroundTint="@color/blue"
-                                android:textColor="@android:color/white"/>
+                                android:textColor="@android:color/white"
+                                />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -176,7 +179,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -205,7 +209,7 @@
                                 android:text="Don Quijote de la Mancha"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor2"
@@ -231,7 +235,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$249.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -252,7 +256,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -281,7 +286,7 @@
                                 android:text="Cien años de soledad"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor3"
@@ -307,7 +312,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$299.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -328,7 +333,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -357,7 +363,7 @@
                                 android:text="1984"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor4"
@@ -383,7 +389,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$180.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -404,7 +410,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -433,7 +440,7 @@
                                 android:text="Los Miserables"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor5"
@@ -459,7 +466,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$320.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -480,7 +487,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -509,7 +517,7 @@
                                 android:text="Fahrenheit 451"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor8"
@@ -535,7 +543,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$210.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -556,7 +564,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -585,7 +594,7 @@
                                 android:text="Matar a un ruiseñor"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor9"
@@ -611,7 +620,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$250.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 
@@ -632,7 +641,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -661,7 +671,7 @@
                                 android:text="El Hobbit"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor10"
@@ -708,7 +718,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -737,7 +748,7 @@
                                 android:text="El Señor de los Anillos"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/blue"/>
 
                             <TextView
                                 android:id="@+id/tvAutor11"
@@ -763,7 +774,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$499.00 MXN"
                                 android:textStyle="bold"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="16sp"
                                 android:layout_marginTop="4dp"/>
 

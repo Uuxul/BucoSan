@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PRUEBA"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".carrito"
+            android:exported="false" />
+        <activity
             android:name=".perfil"
             android:exported="false" />
         <activity
