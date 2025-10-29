@@ -1,0 +1,52 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONFIRMAR CONTRATO"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="16dp"/>
+
+    <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/grey" android:layout_marginBottom="16dp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="PAQUETE SELECCIONADO" android:textStyle="bold" android:textSize="16sp"/>
+
+    <TextView android:id="@+id/tvNombrePaqueteConf" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="20sp" android:textStyle="bold"
+        android:textColor="@color/black" android:text="[Nombre del Plan]"/>
+
+    <TextView android:id="@+id/tvDetallesPaqueteConf" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="16sp"
+        android:text="[Velocidad] / [Precio]"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="DATOS DEL CLIENTE" android:textStyle="bold" android:textSize="16sp"
+        android:layout_marginTop="24dp"/>
+
+    <TextView android:id="@+id/tvNombreClienteConf" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="[Nombre Cliente]"/>
+
+    <TextView android:id="@+id/tvCorreoClienteConf" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="[Correo]"/>
+
+    <TextView android:id="@+id/tvTelefonoClienteConf" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="[Teléfono]"/>
+
+    <Button
+        android:id="@+id/btnFinalizarContrato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FINALIZAR CONTRATO"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

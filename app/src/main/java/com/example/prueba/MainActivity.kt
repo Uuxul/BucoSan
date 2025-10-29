@@ -13,6 +13,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.android.volley.Request
 import com.android.volley.Response
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtRegistrar: TextView
     private lateinit var textOlvidar: TextView
     private lateinit var tvBienvenido: TextView
+    private lateinit var btnCheckConnection: Button //checar conexion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         txtRegistrar = findViewById(R.id.txtRegistrar)
         textOlvidar = findViewById(R.id.textOlvidar)
         tvBienvenido = findViewById(R.id.textView5) // Nuevo TextView opcional para "Bienvenido de nuevo"
+        btnCheckConnection = findViewById(R.id.btnCheckConnection)// checar conexion
 
         // 🔹 Leer SharedPreferences
         val prefs = getSharedPreferences("MiAppPrefs", MODE_PRIVATE)
@@ -70,9 +73,44 @@ class MainActivity : AppCompatActivity() {
                 email.isEmpty() && password.isEmpty() -> showDialog("⚠️ Campos vacíos", "Por favor ingresa tu correo y tu contraseña para continuar.")
                 email.isEmpty() -> showDialog("📧 Correo faltante", "No olvides escribir tu dirección de correo electrónico.")
                 password.isEmpty() -> showDialog("🔒 Contraseña faltante", "Debes ingresar tu contraseña para iniciar sesión.")
-                else -> loginUsuario(email, password)
+                else -> {
+                    // 🔑 MODIFICACIÓN 1: Limpia SharedPreferences si la casilla NO está marcada.
+                    if (!chkRecordar.isChecked) {
+                        val prefs = getSharedPreferences("MiAppPrefs", MODE_PRIVATE)
+                        prefs.edit().apply {
+                            remove("correoUsuario")
+                            remove("nombreUsuario")
+                            apply() // Confirma la eliminación
+                        }
+                    }
+                    loginUsuario(email, password)
+                }
+            }
+            //checar conexion
+            btnCheckConnection.setOnClickListener {
+                checkDatabaseConnection()
             }
         }
+    }
+
+
+
+    private fun checkDatabaseConnection() {
+        // Usa el nuevo script PHP: check_connection.php
+        val url = Config.BASE_URL + "check_connection.php"
+        val queue = Volley.newRequestQueue(this)
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            Response.Listener { response ->
+                showDialog("✅ Estado de la Conexión", response) // Muestra si el servidor dice 'OK'
+            },
+            Response.ErrorListener { error ->
+                showDialog("❌ Error de Conexión", "No se pudo conectar al servidor: ${error.message}") // Muestra error de red
+            }
+        )
+
+        queue.add(stringRequest)
     }
 
     private fun loginUsuario(correo: String, password: String) {
@@ -82,39 +120,73 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener { response ->
-                if (response.contains("✅ Login exitoso")) {
-                    val parts = response.split("|")
-                    val nombre = if (parts.size > 1) parts[1] else ""
-                    val idUser = if (parts.size > 2) parts[2] else ""
+                try {
+                    val jsonResponse = JSONObject(response)
+                    val status = jsonResponse.getString("status")
 
-                    // Guardar variables globales
-                    RegistrarCuenta.nombreUsuarioGlobal = nombre
-                    RegistrarCuenta.correoUsuarioGlobal = correo
+                    if (status == "success") {
+                        // Extracción de todos los datos necesarios
+                        val nombre = jsonResponse.getString("nombre")
+                        val rol = jsonResponse.getString("rol")
+                        val idUser = jsonResponse.getString("id")
+                        val correoRecibido = jsonResponse.getString("correo")     // 🔑 NUEVA EXTRACCIÓN
+                        val telefono = jsonResponse.getString("telefono")       // 🔑 NUEVA EXTRACCIÓN
 
-                    // 🔹 Guardar en SharedPreferences si está marcada la casilla
-                    val prefs = getSharedPreferences("MiAppPrefs", MODE_PRIVATE)
-                    val editor = prefs.edit()
-                    if (findViewById<CheckBox>(R.id.chkRecordar).isChecked) {
-                        editor.putString("nombreUsuario", nombre)
-                        editor.putString("correoUsuario", correo)
+                        // Guardar variables globales (si las usas)
+                        // ... (código para guardar variables globales) ...
+
+                        SessionManager.currentUserId = idUser
+                        SessionManager.userName = nombre
+                        SessionManager.userEmail = correoRecibido
+                        SessionManager.userPhone = telefono // Opcional
+
+                        if (chkRecordar.isChecked) {
+                            val prefs = getSharedPreferences("MiAppPrefs", MODE_PRIVATE)
+                            prefs.edit().apply {
+                                putString("correoUsuario", correoRecibido)
+                                putString("nombreUsuario", nombre)
+                                apply() // Confirma el guardado
+                            }
+                        }
+
+
+                        // Guardar en SharedPreferences si está marcada la casilla
+                        // ... (código de SharedPreferences) ...
+
+                        // 2. Lógica de REDIRECCIÓN basada en el ROL
+                        if (rol == "cliente") {
+                            // ROL CLIENTE: Acceso concedido
+                            val intent = Intent(this, SegundaP::class.java)
+
+                            // 🔑 MODIFICACIÓN: Enviar los 4 datos con los nombres que SegundaP.kt espera
+                            //intent.putExtra("ID_USUARIO", idUser)         // <-- ID del usuario
+                            //intent.putExtra("NOMBRE_USUARIO", nombre)     // <-- Nombre
+                            //intent.putExtra("CORREO_USUARIO", correoRecibido) // <-- Correo
+                            //intent.putExtra("TELEFONO_USUARIO", telefono)     // <-- Teléfono
+
+                            startActivity(intent)
+                            finish()
+                        } else if (rol == "admin") {
+                            // ROL ADMIN: Acceso denegado
+                            showDialog("Acceso Denegado", "Usuario Administrador. Acceda desde el Panel Web para gestionar contratos.")
+                        } else {
+                            // Rol no reconocido
+                            showDialog("Error de Sistema", "Rol de usuario desconocido. Contacte a soporte.")
+                        }
+
                     } else {
-                        editor.clear()
+                        // Manejar errores (Contraseña incorrecta, etc.)
+                        val message = jsonResponse.getString("message")
+                        showDialog("⚠️ Error de Login", message)
                     }
-                    editor.apply()
-
-                    // Abrir SegundaP
-                    val intent = Intent(this, SegundaP::class.java)
-                    intent.putExtra("idUsuario", idUser)
-                    intent.putExtra("nombreUsuario", nombre)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    showDialog("⚠️ Error de login", response)
+                } catch (e: Exception) {
+                    // Manejar errores de JSON o comunicación
+                    showDialog("⚠️ Error de comunicación", "Respuesta no válida del servidor: ${e.message}")
                 }
             },
             Response.ErrorListener { error ->
-                showDialog("⚠️ Error de Usuario", "El correo y la contraseña no se han registrado.")
-
+                // Este error ocurre por problemas de red o URL incorrecta
+                showDialog("⚠️ Error de Red", "No se pudo comunicar con el servidor. Revisa tu conexión de red.")
             }
         ) {
             override fun getParams(): MutableMap<String, String> {

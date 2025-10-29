@@ -93,6 +93,41 @@
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:layout_marginBottom="24dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ESTADO DEL PAQUETE"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="12dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:id="@+id/tvStatusContrato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cargando estado del contrato..."
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnCancelarContrato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CANCELAR PAQUETE"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp" />
         <Button
             android:id="@+id/btnregresar"
             android:layout_width="wrap_content"
