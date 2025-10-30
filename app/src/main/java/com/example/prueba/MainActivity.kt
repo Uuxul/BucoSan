@@ -129,16 +129,17 @@ class MainActivity : AppCompatActivity() {
                         val nombre = jsonResponse.getString("nombre")
                         val rol = jsonResponse.getString("rol")
                         val idUser = jsonResponse.getString("id")
-                        val correoRecibido = jsonResponse.getString("correo")     // 🔑 NUEVA EXTRACCIÓN
-                        val telefono = jsonResponse.getString("telefono")       // 🔑 NUEVA EXTRACCIÓN
+                        val correoRecibido = jsonResponse.getString("correo")
+                        val telefono = jsonResponse.getString("telefono")
+                        val direccion = jsonResponse.getString("direccion")
 
-                        // Guardar variables globales (si las usas)
                         // ... (código para guardar variables globales) ...
 
                         SessionManager.currentUserId = idUser
                         SessionManager.userName = nombre
                         SessionManager.userEmail = correoRecibido
-                        SessionManager.userPhone = telefono // Opcional
+                        SessionManager.userPhone = telefono //
+                        SessionManager.userAdress = direccion
 
                         if (chkRecordar.isChecked) {
                             val prefs = getSharedPreferences("MiAppPrefs", MODE_PRIVATE)

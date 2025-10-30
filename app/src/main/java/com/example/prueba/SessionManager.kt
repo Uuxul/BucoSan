@@ -7,11 +7,13 @@ object SessionManager {
     var userEmail: String? = null
     // Agrega más datos (ej. telefono, rol, etc.) si es necesario
     var userPhone: String?= null
+    var userAdress: String?= null
 
     fun clearSession() {
         currentUserId = null
         userName = null
         userEmail = null
         userPhone = null
+        userAdress = null
     }
 }

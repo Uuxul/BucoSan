@@ -94,6 +94,30 @@
             android:textColor="@android:color/white"
             android:layout_marginBottom="24dp" />
 
+        <!-- Direccion -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dirección:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:id="@+id/txtDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calle 0 x 0 y 0 No 0"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="24dp" />
+
 
         <TextView
             android:layout_width="match_parent"

@@ -63,6 +63,7 @@ class SegundaP : AppCompatActivity() {
         val nombreUsuario = intent.getStringExtra("NOMBRE_USUARIO") ?: "Usuario Invitado"
         val correoUsuario = intent.getStringExtra("CORREO_USUARIO") ?: "ejemplo@dominio.com"
         val telefonoUsuario = intent.getStringExtra("TELEFONO_USUARIO") ?: "N/D" // Asumimos que también se pasa el teléfono
+        val direccionUsuario = intent.getStringExtra("DIRECCION_USUARIO") ?: ""
 
         // ¡ID del usuario! Necesario para la contratación.
         val idUsuario = intent.getStringExtra("ID_USUARIO")?.toIntOrNull() ?: -1
@@ -101,6 +102,7 @@ class SegundaP : AppCompatActivity() {
                     intent.putExtra("NOMBRE_USUARIO", nombreUsuario)
                     intent.putExtra("CORREO_USUARIO", correoUsuario)
                     intent.putExtra("TELEFONO_USUARIO", telefonoUsuario)
+                    intent.putExtra("DIRECCION_USUARIO", direccionUsuario)
                     startActivity(intent)
                 }
                 R.id.nav_info -> {
@@ -228,6 +230,7 @@ class SegundaP : AppCompatActivity() {
                 val nombreUsuario = this@SegundaP.intent.getStringExtra("NOMBRE_USUARIO") ?: ""
                 val correoUsuario = this@SegundaP.intent.getStringExtra("CORREO_USUARIO") ?: ""
                 val telefonoUsuario = this@SegundaP.intent.getStringExtra("TELEFONO_USUARIO") ?: ""
+                val direccionUsuario = this@SegundaP.intent.getStringExtra("DIRECCION_USUARIO") ?: ""
 
                 val intent = Intent(holder.itemView.context, ConfirmarContrato::class.java)
 
@@ -244,6 +247,7 @@ class SegundaP : AppCompatActivity() {
                 intent.putExtra("NOMBRE_USUARIO", nombreUsuario)
                 intent.putExtra("CORREO_USUARIO", correoUsuario)
                 intent.putExtra("TELEFONO_USUARIO", telefonoUsuario)
+                intent.putExtra("DIRECCION_USUARIO", direccionUsuario)
 
                 holder.itemView.context.startActivity(intent)
             }

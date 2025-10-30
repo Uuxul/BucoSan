@@ -119,6 +119,27 @@
                     android:textSize="16sp"
                     android:layout_marginBottom="16dp"/>
 
+                <!-- direccion -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Direccion"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <EditText
+                    android:id="@+id/Direccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_bg"
+                    android:hint="Ej: Call 4 x 5 y 6 No 101"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp"/>
+
                 <!-- Contraseña -->
                 <TextView
                     android:layout_width="match_parent"

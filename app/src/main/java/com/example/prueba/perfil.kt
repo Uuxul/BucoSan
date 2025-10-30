@@ -27,6 +27,7 @@ class perfil : AppCompatActivity() {
     private lateinit var txtUsuario: TextView
     private lateinit var txtCorreo: TextView
     private lateinit var txtTelefono: TextView
+    private lateinit var txtDireccion: TextView
     private lateinit var btnRegresar: Button
 
     // Vistas nuevas para el contrato (asumiendo que las agregaste en activity_perfil.xml)
@@ -44,6 +45,7 @@ class perfil : AppCompatActivity() {
         txtUsuario = findViewById(R.id.txtUsuario)
         txtCorreo = findViewById(R.id.txtCorreo)
         txtTelefono = findViewById(R.id.txtTelefono)
+        txtDireccion = findViewById(R.id.txtDireccion)
         btnRegresar = findViewById(R.id.btnregresar) // O btnregresar
 
         // Vistas de contrato (asumiendo IDs del Paso 4)
@@ -56,6 +58,7 @@ class perfil : AppCompatActivity() {
         txtUsuario.text = SessionManager.userName ?: "N/D"
         txtCorreo.text = SessionManager.userEmail ?: "N/D"
         txtTelefono.text = SessionManager.userPhone ?: "N/D"
+        txtDireccion.text = SessionManager.userAdress ?: "N/D"
 
         // 3. LISTENERS
         btnRegresar.setOnClickListener{

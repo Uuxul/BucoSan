@@ -37,6 +37,7 @@ class ConfirmarContrato : AppCompatActivity() {
         val nombreCliente = SessionManager.userName ?: "Datos incompletos"
         val correoCliente = SessionManager.userEmail ?: "Datos incompletos"
         val telefonoCliente = SessionManager.userPhone ?: "N/D"
+        val direccionCliente = SessionManager.userAdress ?: "N/D"
 
         // 2. Asignación de datos a la vista
         findViewById<TextView>(R.id.tvNombrePaqueteConf).text = nombrePaquete
@@ -44,6 +45,7 @@ class ConfirmarContrato : AppCompatActivity() {
         findViewById<TextView>(R.id.tvNombreClienteConf).text = nombreCliente
         findViewById<TextView>(R.id.tvCorreoClienteConf).text = correoCliente
         findViewById<TextView>(R.id.tvTelefonoClienteConf).text = telefonoCliente
+        findViewById<TextView>(R.id.tvDireccionClienteConf).text = direccionCliente
 
         // 3. Lógica del Botón Finalizar (MODIFICADA)
         findViewById<Button>(R.id.btnFinalizarContrato).setOnClickListener {
