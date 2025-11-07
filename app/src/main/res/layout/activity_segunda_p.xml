@@ -60,37 +60,38 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/portada"/>
+                            android:src="@drawable/portada" />
 
                         <!-- Fondo semitransparente para texto -->
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#80000000"/>
+                            android:background="#80000000" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="97dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="0dp"
                             android:orientation="vertical"
-                            android:padding="16dp"
-                            android:layout_alignParentBottom="true">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/tvBannerTitulo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Todos los Libros en un solo lugar"
+                                android:textColor="@android:color/white"
                                 android:textSize="22sp"
-                                android:textStyle="bold"
-                                android:textColor="@android:color/white"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tvBannerDescripcion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="¡Los mejores libros con descuento especial por tiempo limitado!"
-                                android:textSize="14sp"
-                                android:textColor="@android:color/white"/>
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                     </RelativeLayout>
