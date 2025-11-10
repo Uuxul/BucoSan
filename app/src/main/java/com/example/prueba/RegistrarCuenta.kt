@@ -25,6 +25,8 @@ class RegistrarCuenta : AppCompatActivity() {
         var nombreUsuarioGlobal: String? = null
 
         var telefonoUsuarioGlobal: String? = null
+
+        var DireccionUsuarioGlobal: String? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class RegistrarCuenta : AppCompatActivity() {
         val nombre = findViewById<EditText>(R.id.nombreRegistro)
         val email = findViewById<EditText>(R.id.emailRegistro)
         val telefono = findViewById<EditText>(R.id.Telefono)
+        val direccion = findViewById<EditText>(R.id.Direccion)
         val password = findViewById<EditText>(R.id.passwordRegistro)
         val confPassword = findViewById<EditText>(R.id.confPasswordRegistro)
         val btnRegistro = findViewById<Button>(R.id.btnRegistro)
@@ -49,11 +52,12 @@ class RegistrarCuenta : AppCompatActivity() {
             val nombreText = nombre.text.toString().trim()
             val emailText = email.text.toString().trim()
             val telefonoText = telefono.text.toString().trim()
+            val direcciontext = direccion.text.toString().trim()
             val passwordText = password.text.toString().trim()
             val confPasswordText = confPassword.text.toString().trim()
 
             when {
-                nombreText.isEmpty() || emailText.isEmpty() || telefonoText.isEmpty()
+                nombreText.isEmpty() || emailText.isEmpty() || telefonoText.isEmpty() || direcciontext.isEmpty()
                         || passwordText.isEmpty() || confPasswordText.isEmpty() -> {
                     mostrarDialogo("⚠️ Campos vacíos", "Por favor, completa todos los campos.")
                 }
@@ -73,7 +77,8 @@ class RegistrarCuenta : AppCompatActivity() {
                     correoUsuarioGlobal = emailText
                     nombreUsuarioGlobal = nombreText
                     telefonoUsuarioGlobal = telefonoText
-                    registrarUsuario(nombreText, emailText, telefonoText, passwordText)
+                    DireccionUsuarioGlobal = direcciontext
+                    registrarUsuario(nombreText, emailText, telefonoText, direcciontext,passwordText)
                 }
             }
         }
@@ -84,6 +89,7 @@ class RegistrarCuenta : AppCompatActivity() {
         nombre: String,
         email: String,
         telefono: String,
+        direccion: String,
         password: String
     ) {
         val url = Config.BASE_URL + "registrar.php"
@@ -124,6 +130,7 @@ class RegistrarCuenta : AppCompatActivity() {
                 params["nombre"] = nombre
                 params["correo"] = email
                 params["telefono"] = telefono
+                params["direccion"] = direccion
                 params["password"] = password
                 return params
             }

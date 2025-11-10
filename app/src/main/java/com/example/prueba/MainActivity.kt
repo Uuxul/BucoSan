@@ -82,14 +82,18 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener { response ->
-                if (response.contains("✅ Login exitoso")) {
+                if (response.contains("Login exitoso")) {
                     val parts = response.split("|")
                     val nombre = if (parts.size > 1) parts[1] else ""
                     val idUser = if (parts.size > 2) parts[2] else ""
+                    val telefono = if (parts.size > 3) parts[3] else ""
+                    val direccion = if (parts.size > 4) parts[4] else ""
 
                     // Guardar variables globales
                     RegistrarCuenta.nombreUsuarioGlobal = nombre
                     RegistrarCuenta.correoUsuarioGlobal = correo
+                    RegistrarCuenta.DireccionUsuarioGlobal = direccion
+                    RegistrarCuenta.telefonoUsuarioGlobal = telefono
 
                     // 🔹 Guardar en SharedPreferences si está marcada la casilla
                     val prefs = getSharedPreferences("MiAppPrefs", MODE_PRIVATE)

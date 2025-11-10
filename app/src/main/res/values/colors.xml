@@ -6,4 +6,8 @@
     <color name="blue">#4C9BE7</color>
     <color name="Blue2">#174281</color>
     <color name="green">#42C376</color>
+    <color name="verde_estado">#4CAF50</color>      <!-- Verde -->
+    <color name="amarillo_estado">#FFC107</color>   <!-- Amarillo -->
+    <color name="rojo_estado">#F44336</color>       <!-- Rojo -->
+    <color name="gris_estado">#9E9E9E</color>       <!-- Gris neutro -->
 </resources>

@@ -70,6 +70,28 @@
             android:textColor="@android:color/white"
             android:layout_marginBottom="24dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dirección:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:id="@+id/txtDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calle 1 x 2 y 3"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="24dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -93,6 +115,30 @@
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:layout_marginBottom="24dp" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerPagos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnfechas"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Generar fechas"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:layout_marginBottom="0dp"/>
+
         <Button
             android:id="@+id/btnregresar"
             android:layout_width="wrap_content"
