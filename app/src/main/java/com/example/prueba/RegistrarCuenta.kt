@@ -19,14 +19,16 @@ import org.json.JSONObject
 class RegistrarCuenta : AppCompatActivity() {
 
     companion object {
-        var correoUsuarioGlobal: String? = null
+        //var correoUsuarioGlobal: String? = null
 
         // Variable global donde se guardará el nombre
-        var nombreUsuarioGlobal: String? = null
+        //var nombreUsuarioGlobal: String? = null
 
-        var telefonoUsuarioGlobal: String? = null
+        //var telefonoUsuarioGlobal: String? = null
 
-        var DireccionUsuarioGlobal: String? = null
+        //var DireccionUsuarioGlobal: String? = null
+
+        //var idUsuarioGlobal: Int = -1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,10 +76,10 @@ class RegistrarCuenta : AppCompatActivity() {
                 }
 
                 else -> {
-                    correoUsuarioGlobal = emailText
-                    nombreUsuarioGlobal = nombreText
-                    telefonoUsuarioGlobal = telefonoText
-                    DireccionUsuarioGlobal = direcciontext
+                    Globales.emailUsuario = emailText
+                    Globales.nombreUsuario = nombreText
+                    Globales.telefonoUsuario = telefonoText
+                    Globales.direccionUsuario = direcciontext
                     registrarUsuario(nombreText, emailText, telefonoText, direcciontext,passwordText)
                 }
             }

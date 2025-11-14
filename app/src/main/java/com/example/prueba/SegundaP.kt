@@ -45,8 +45,8 @@ class SegundaP : AppCompatActivity() {
         val tvHeaderEmail = headerView.findViewById<TextView>(R.id.headerEmail)
 
 
-        tvHeaderName.text = RegistrarCuenta.nombreUsuarioGlobal ?: "Usuario"
-        tvHeaderEmail.text = RegistrarCuenta.correoUsuarioGlobal ?: "usuario@email.com"
+        tvHeaderName.text = Globales.nombreUsuario ?: "Usuario"
+        tvHeaderEmail.text = Globales.emailUsuario ?: "usuario@email.com"
 
         // es  lo que hay en nuestro menu
         navView.setNavigationItemSelectedListener { menuItem ->
@@ -63,7 +63,8 @@ class SegundaP : AppCompatActivity() {
 
                 }
                 R.id.nav_info -> {
-                    showDialog("Información", "AppUx versión prueba.")
+                    val intent = Intent(this, PagosActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.nav_salir -> {
                     val intent = Intent(this, MainActivity::class.java)
@@ -84,7 +85,8 @@ class SegundaP : AppCompatActivity() {
         builder.show()
     }
     //para que cuando le demos atras ya no salga solo asi
-    override fun onBackPressed() { //no causa error eso rojo no se porque salio xd
+    override fun onBackPressed() {
+        super.onBackPressed() //no causa error eso rojo no se porque salio xd
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Salir")
         builder.setMessage("¿Deseas salir de la aplicación?")

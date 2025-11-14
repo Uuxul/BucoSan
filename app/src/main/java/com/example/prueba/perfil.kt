@@ -21,7 +21,7 @@ class perfil : AppCompatActivity() {
     private lateinit var recyclerPagos: RecyclerView
     private lateinit var btnFechas: Button
     private val listaPagos = mutableListOf<PagoItem>()
-    private val contratoId = 25 //Por ahora fijo, luego dinamico
+    private val contratoId = Globales.contratoId //Por ahora fijo, luego dinamico
     private lateinit var nombre: TextView
     private lateinit var correo: TextView
     private lateinit var telefono: TextView
@@ -42,10 +42,10 @@ class perfil : AppCompatActivity() {
         direccion = findViewById(R.id.txtDireccion)
 
         // Mostrar datos del usuario
-        nombre.text = RegistrarCuenta.nombreUsuarioGlobal ?: "Usuario"
-        correo.text = RegistrarCuenta.correoUsuarioGlobal ?: "usuario@email.com"
-        direccion.text = RegistrarCuenta.DireccionUsuarioGlobal ?: "UsuarioDirecc"
-        telefono.text = RegistrarCuenta.telefonoUsuarioGlobal ?: "+52 999-123-4567"
+        nombre.text = Globales.nombreUsuario ?: "Usuario"
+        correo.text = Globales.emailUsuario ?: "usuario@email.com"
+        direccion.text = Globales.direccionUsuario ?: "UsuarioDirecc"
+        telefono.text = Globales.telefonoUsuario ?: "+52 999-123-4567"
 
         val btnFechas = findViewById<Button>(R.id.btnfechas)
         val btn = findViewById<Button>(R.id.btnregresar)
@@ -106,6 +106,7 @@ class perfil : AppCompatActivity() {
                         for (i in 0 until array.length()) {
                             val obj = array.getJSONObject(i)
                             val pago = PagoItem(
+                                id = obj.getInt("id"),
                                 numeroPago = obj.getInt("numero_pago"),
                                 fechaPago = obj.getString("fecha_pago"),
                                 monto = obj.getDouble("monto"),

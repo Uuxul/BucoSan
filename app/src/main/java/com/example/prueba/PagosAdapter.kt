@@ -20,6 +20,8 @@ class PagosAdapter(
         val txtNumero: TextView = view.findViewById(R.id.txtNumeroPago)
         val txtFecha: TextView = view.findViewById(R.id.txtFechaPago)
         val txtMonto: TextView = view.findViewById(R.id.txtMontoPago)
+
+        val txtEstado: TextView = view.findViewById(R.id.txtEstado)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,6 +35,7 @@ class PagosAdapter(
         holder.txtNumero.text = "Pago #${pago.numeroPago}"
         holder.txtFecha.text = "Fecha: ${pago.fechaPago}"
         holder.txtMonto.text = "Monto: $${pago.monto}"
+        holder.txtEstado.text = "Estado: ${pago.estado}"
 
         // Colores visuales por estado
         val colorRes = when (pago.estado) {

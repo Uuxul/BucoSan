@@ -1,6 +1,6 @@
 package com.example.prueba
 
-data class PagoItem(
+class PagoItemSelec (
     val id: Int,                // id de la tabla fechas_pagos
     val numeroPago: Int,
     val fechaPago: String,
