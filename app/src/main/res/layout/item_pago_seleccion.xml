@@ -1,58 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="12dp"
-    android:gravity="center_vertical">
-
-    <View
-        android:id="@+id/estadoColor"
-        android:layout_width="8dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="12dp"
-        android:background="#CCCCCC" />
+    android:background="@color/blanco"> <!-- color por default -->
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtNumeroPago"
-            android:text="Pago #"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Pago #"
+            android:textColor="#000000"
             android:textSize="16sp"
-            android:textColor="#000000" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtFechaPago"
-            android:text="Fecha"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
             android:textColor="#333333" />
 
         <TextView
             android:id="@+id/txtMontoPago"
-            android:text="Monto"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto"
             android:textColor="#333333" />
 
         <TextView
-            android:id="@id/txtEstado"
-            android:text="Estado"
+            android:id="@+id/txtEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#333333"
-            />
+            android:text="Estado"
+            android:textColor="#333333" />
     </LinearLayout>
 
     <CheckBox
         android:id="@+id/checkSeleccion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

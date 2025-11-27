@@ -10,4 +10,8 @@
     <color name="amarillo_estado">#FFC107</color>   <!-- Amarillo -->
     <color name="rojo_estado">#F44336</color>       <!-- Rojo -->
     <color name="gris_estado">#9E9E9E</color>       <!-- Gris neutro -->
+    <color name="pagado_suave">#DFF2D8</color>
+    <color name="pendiente_suave">#FFF9D6</color>
+    <color name="atrasado_suave">#F8D7DA</color>
+    <color name="otro_suave">#EDEDED</color>
 </resources>
