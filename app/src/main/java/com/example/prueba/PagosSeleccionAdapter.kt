@@ -26,7 +26,7 @@ class PagosSeleccionAdapter(
         val txtEstado: TextView = view.findViewById(R.id.txtEstado)
         val check: CheckBox = view.findViewById(R.id.checkSeleccion)
 
-        val container: View = view.findViewById(R.id.itemContainer)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,16 +42,16 @@ class PagosSeleccionAdapter(
         holder.txtMonto.text = "Monto: $${"%.2f".format(pago.monto)}"
         holder.txtEstado.text = "Estado: ${pago.estado}"
 
-        val fondoSuave = when (pago.estado) {
-            "Pagado" -> R.color.pagado_suave
-            "Pendiente" -> R.color.pendiente_suave
-            "Atrasado" -> R.color.atrasado_suave
-            else -> R.color.otro_suave
+        val colorRes = when (pago.estado) {
+            "Pagado" -> R.color.verde_estado
+            "Pendiente" -> R.color.amarillo_estado
+            "Atrasado" -> R.color.rojo_estado
+            else -> R.color.gris_estado
         }
+        holder.estadoColor.setBackgroundColor(ContextCompat.getColor(context, colorRes))
 
-        holder.container.setBackgroundColor(
-            ContextCompat.getColor(context, fondoSuave)
-        )
+
+
 
         // Si ya está pagado, deshabilitar selección y mostrar checkbox desactivado
         if (pago.estado == "Pagado") {
