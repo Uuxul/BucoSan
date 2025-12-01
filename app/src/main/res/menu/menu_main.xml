@@ -6,13 +6,14 @@
         android:icon="@drawable/user" />
 
     <item
-        android:id="@+id/nav_info"
-        android:title="Info"
-        android:icon="@drawable/info" />
+        android:id="@+id/nav_carrito"
+        android:title="Carrito"
+        android:icon="@drawable/carrito" />
+
     <item
-    android:id="@+id/nav_carrito"
-    android:title="Carrito"
-    android:icon="@drawable/carrito" />
+        android:id="@+id/nav_info"
+        android:title="Pagos"
+        android:icon="@drawable/info" />
 
     <item
         android:id="@+id/nav_salir"
