@@ -68,7 +68,7 @@ class SegundaP : AppCompatActivity() {
             true
         }
 
-        // 🔥 Cargar los paquetes del servidor
+        // Cargar los paquetes del servidor
         cargarPaquetes()
     }
 
