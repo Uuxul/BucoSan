@@ -37,11 +37,11 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="160dp"
-                    android:layout_height="169dp"
+                    android:layout_width="197dp"
+                    android:layout_height="191dp"
                     android:layout_marginBottom="24dp"
                     android:contentDescription="Imagen de usuario"
-                    android:src="@drawable/logoux" />
+                    android:src="@drawable/uxul" />
 
                 <TextView
                     android:id="@+id/textView6"

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -112,6 +113,7 @@ class SegundaP : AppCompatActivity() {
     // ============================================================
     //                AGREGAR CADA PAQUETE A LA VISTA
     // ============================================================
+
     private fun agregarPaquete(nombre: String, precio: String, velocidad: String) {
 
         val view = LayoutInflater.from(this).inflate(R.layout.item_paquete, containerPaquetes, false)
@@ -119,13 +121,98 @@ class SegundaP : AppCompatActivity() {
         val tvNombre = view.findViewById<TextView>(R.id.tvNombre)
         val tvPrecio = view.findViewById<TextView>(R.id.tvPrecio)
         val tvVelocidad = view.findViewById<TextView>(R.id.tvVelocidad)
+        val btnContratar = view.findViewById<Button>(R.id.btnContratar)
 
         tvNombre.text = nombre
         tvPrecio.text = "$$precio MXN"
         tvVelocidad.text = "$velocidad Mbps"
 
+        btnContratar.setOnClickListener {
+
+            val inflater = LayoutInflater.from(this)
+            val dialogMesesView = inflater.inflate(R.layout.dialog_meses, null)
+
+            val tvTitulo = dialogMesesView.findViewById<TextView>(R.id.tvTituloMeses)
+            val tvDatos = dialogMesesView.findViewById<TextView>(R.id.tvDatosPaquete)
+            val btnMes6 = dialogMesesView.findViewById<Button>(R.id.btnMes6)
+            val btnMes12 = dialogMesesView.findViewById<Button>(R.id.btnMes12)
+            val btnCancelar = dialogMesesView.findViewById<Button>(R.id.btnCancelarMeses)
+
+            // Setea los datos reales
+            tvTitulo.text = "Selecciona el plazo"
+            tvDatos.text = "Paquete: $nombre\nPrecio: $$precio MXN"
+
+            val dialogMeses = AlertDialog.Builder(this)
+                .setView(dialogMesesView)
+                .create()
+
+            dialogMeses.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            dialogMeses.show()
+
+            // ======================================
+            // EVENTOS DE LOS BOTONES
+            // ======================================
+
+            btnMes6.setOnClickListener {
+                dialogMeses.dismiss()
+                mostrarDialogoConfirmacion(nombre, precio, "6 meses")
+            }
+
+            btnMes12.setOnClickListener {
+                dialogMeses.dismiss()
+                mostrarDialogoConfirmacion(nombre, precio, "12 meses")
+            }
+
+            btnCancelar.setOnClickListener {
+                dialogMeses.dismiss()
+            }
+        }
+
         containerPaquetes.addView(view)
     }
+
+
+    private fun mostrarDialogoConfirmacion(nombre: String, precio: String, meses: String) {
+
+        val inflater = LayoutInflater.from(this)
+        val dialogConfirmView = inflater.inflate(R.layout.dialog_custom, null)
+
+        val titulo = dialogConfirmView.findViewById<TextView>(R.id.tvTitulo)
+        val mensaje = dialogConfirmView.findViewById<TextView>(R.id.tvMensaje)
+        val btnNo = dialogConfirmView.findViewById<Button>(R.id.btnNo)
+        val btnSi = dialogConfirmView.findViewById<Button>(R.id.btnSi)
+
+        titulo.text = "Confirmación"
+        mensaje.text =
+            "¿Seguro que quiere este paquete?\n\n" +
+                    "Paquete: $nombre\n" +
+                    "Precio: $$precio MXN\n" +
+                    "Plazo: $meses"
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogConfirmView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+
+        btnNo.setOnClickListener { dialog.dismiss() }
+
+        btnSi.setOnClickListener {
+            dialog.dismiss()
+
+            val intent = Intent(this, PagosActivity::class.java)
+            intent.putExtra("paquete", nombre)
+            intent.putExtra("precio", precio)
+            intent.putExtra("meses", meses)
+            startActivity(intent)
+
+            Toast.makeText(this, "Paquete registrado con éxito", Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+
 
     // ============================================================
     //   DIÁLOGO AL PRESIONAR "ATRÁS" PARA SALIR DE LA APP

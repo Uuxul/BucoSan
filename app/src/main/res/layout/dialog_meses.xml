@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <TextView
+        android:id="@+id/tvTituloMeses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona el plazo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2A2A2A"
+        android:paddingBottom="10dp" />
+
+    <TextView
+        android:id="@+id/tvDatosPaquete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paquete: X"
+        android:textSize="16sp"
+        android:textColor="#555"
+        android:paddingBottom="20dp" />
+
+    <!-- Botón empresarial -->
+    <Button
+        android:id="@+id/btnMes6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="6 meses"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_empresarial"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/btnMes12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12 meses"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_empresarial"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/btnCancelarMeses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:textColor="#444"
+        android:background="@drawable/btn_cancelar"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"/>
+
+</LinearLayout>
